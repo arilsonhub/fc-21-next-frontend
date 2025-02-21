@@ -39,7 +39,7 @@ export default async function MyWalletListPage({searchParams}: {searchParams: Pr
                 <TableCell>R$ {walletAsset.asset.price}</TableCell>
                 <TableCell>{walletAsset.shares}</TableCell>
                 <TableCell>
-                  <Button color="light" as={Link} href={`/assets/${walletAsset.asset.symbol}?walletId=${walletId}`}>Comprar/vender</Button>
+                  <Button className="w-fit" color="light" as={Link} href={`/assets/${walletAsset.asset.symbol}?walletId=${walletId}`}>Comprar/vender</Button>
                 </TableCell>
               </TableRow>
             ))}
