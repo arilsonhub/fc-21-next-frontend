@@ -7,6 +7,8 @@ import { AssetChartComponent } from "./AssetChartComponent";
 import { WalletList } from "@/app/components/WalletList";
 import { getAssetDailies, getMyWallet } from "@/queries/queries";
 import { Time } from "lightweight-charts";
+import { AssetPrice } from "./AssetPrice";
+import { AssetsSync } from "@/app/components/AssetsSync";
 
 export async function getAsset(symbol: string): Promise<Asset> {
     const response = await fetch(`http://localhost:3000/assets/${symbol}`)
@@ -37,6 +39,7 @@ export default async function AssetDashboard({params, searchParams} : {params: P
         <div className="flex flex-col space-y-5 flex-grow">
             <div className="flex flex-col space-y-2">
                 <AssetShow asset={asset} />
+                <AssetPrice asset={asset} />
                 <div className="ml-2 font-bold text-2xl">R$ {asset.price}</div>
             </div>
             <div className="grid grid-cols-5 flex-grow gap-2">
@@ -56,6 +59,7 @@ export default async function AssetDashboard({params, searchParams} : {params: P
                     <AssetChartComponent asset={asset} data={chartData} />
                 </div>
             </div>
+            <AssetsSync assetsSymbols={[asset.symbol]} />
         </div>
     )
 }
